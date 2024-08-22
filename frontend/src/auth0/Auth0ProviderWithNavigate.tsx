@@ -1,12 +1,14 @@
 import { AppState, Auth0Provider, User } from "@auth0/auth0-react";
 import { useCreateMyUser } from "../api/MyUserApi";
+import { useNavigate } from "react-router-dom";
 
 type Props = {
-  children: React.ReactNode;
+  children: React.ReactNode; //ReactNode is a type that represents anything that can be rendered in React
 };
 
+//custom hook to create a new user with Auth0
 const Auth0ProviderWithNavigate = ({ children }: Props) => {
-  const { createUser } = useCreateMyUser();
+  const navigate = useNavigate();
 
   const domain = import.meta.env.VITE_AUTH0_DOMAIN;
   const clientId = import.meta.env.VITE_AUTH0_CLIENT_ID;
@@ -16,11 +18,9 @@ const Auth0ProviderWithNavigate = ({ children }: Props) => {
     throw new Error("Unable to inititalize auth");
   }
 
+  //function to create a new user
   const onRedirectCallback = (appState?: AppState, user?: User) => {
-    // console.log("USER", user);
-    if (user?.sub && user.email) {
-      createUser({ auth0Id: user.sub, email: user.email });
-    }
+    navigate("/auth-callback"); //separating the redirect logic from the Auth0Provider component
   };
 
   return (
