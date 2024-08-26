@@ -7,6 +7,9 @@ const router = express.Router();
 
 // syntax: router.method(path, middleware, controller)
 // middleware means that the request will pass through the  middleware before reaching the controller
+
+// /api/my/user
+router.get("/", jwtCheck, jwtParse, MyUserController.getCurrentUser);
 router.post("/", jwtCheck, MyUserController.createCurrrentUser);
 router.put(
   "/",
