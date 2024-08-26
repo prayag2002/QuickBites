@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "outDir": "./dist",// The directory where the output files are to be stored
     /* Visit https://aka.ms/tsconfig to read more about this file */
 
     /* Projects */

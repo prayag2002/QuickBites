@@ -13,6 +13,11 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
+// Health Check
+app.get("/health", async (req: Request, res: Response) => {
+  res.send({ message: "Health Ok!" });
+});
+
 app.use("/api/my/user", MyUserRoute);
 
 app.listen(7000, () => {
