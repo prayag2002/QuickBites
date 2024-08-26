@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import User from "../models/user";
 
+// it contains the logic for getting the current user from the database
 const getCurrentUser = async (req: Request, res: Response) => {
   try {
     const currentUser = await User.findOne({ _id: req.userId });
