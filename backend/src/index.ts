@@ -2,8 +2,9 @@ import express, { Request, Response } from "express";
 import cors from "cors";
 import "dotenv/config";
 import mongoose from "mongoose";
-import MyUserRoute from "./routes/MyUserRoute";
+import myUserRoute from "./routes/MyUserRoute";
 import { v2 as cloudinary } from "cloudinary";
+import myRestaurantRoute from "./routes/MyRestaurantRoute";
 
 mongoose
   .connect(process.env.MONGODB_CONNECTION_STRING as string)
@@ -20,7 +21,8 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-app.use("/api/my/user", MyUserRoute);
+app.use("/api/my/user", myUserRoute);
+app.use("/api/my/restaurant", myRestaurantRoute);
 
 app.listen(7000, () => {
   console.log("server started successfully on localhost:7000");
