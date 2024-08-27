@@ -30,7 +30,7 @@ const AppRoutes = () => {
         />
       </Route>
 
-      <Route path="*" element={<Navigate to="/ " />} />
+      <Route path="*" element={<Navigate to="/" />} />
     </Routes>
   );
 };
