@@ -15,6 +15,7 @@ const upload = multer({
 });
 
 // /api/my/restaurant
+//syntax: router.post(endpoint, middleware, middleware, ..., controller)
 router.post(
   "/",
   upload.single("imageFile"), // Upload image to memory

@@ -15,6 +15,9 @@ const formSchema = z
     restaurantName: z.string({
       required_error: "restuarant name is required",
     }),
+    address: z.string({
+      required_error: "address is required",
+    }),
     city: z.string({
       required_error: "city is required",
     }),
@@ -50,7 +53,7 @@ type RestaurantFormData = z.infer<typeof formSchema>;
 
 type Props = {
   onSave: (restaurantFormData: FormData) => void;
-  isLoding: boolean;
+  isLoading: boolean;
 };
 
 const ManageRestaurantForm = ({ onSave, isLoading }: Props) => {
@@ -62,7 +65,39 @@ const ManageRestaurantForm = ({ onSave, isLoading }: Props) => {
     },
   });
 
-  const onSubmit = () => {};
+  const onSubmit = (formDataJson: RestaurantFormData) => {
+    const formData = new FormData(); // plain javascript object data is converted to multipart form data
+
+    formData.append("restaurantName", formDataJson.restaurantName);
+    formData.append("address", formDataJson.address);
+    formData.append("city", formDataJson.city);
+    formData.append("country", formDataJson.country);
+
+    formData.append(
+      "deliveryPrice",
+      (formDataJson.deliveryPrice * 100).toString()
+    );
+    formData.append(
+      "estimatedDeliveryTime",
+      formDataJson.estimatedDeliveryTime.toString()
+    );
+    formDataJson.cuisines.forEach((cuisine, index) => {
+      formData.append(`cuisines[${index}]`, cuisine);
+    });
+    formDataJson.menuItems.forEach((menuItem, index) => {
+      formData.append(`menuItems[${index}][name]`, menuItem.name);
+      formData.append(
+        `menuItems[${index}][price]`,
+        (menuItem.price * 100).toString()
+      );
+    });
+
+    if (formDataJson.imageFile) {
+      formData.append(`imageFile`, formDataJson.imageFile);
+    }
+
+    onSave(formData);
+  };
 
   return (
     <Form {...form}>
