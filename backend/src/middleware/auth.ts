@@ -21,6 +21,7 @@ export const jwtCheck = auth({
   tokenSigningAlg: "RS256", // the tokenSigningAlg is the algorithm used to sign the token
 });
 
+// This middleware will parse the JWT token and add the user id to the request object.
 export const jwtParse = async (
   req: Request,
   res: Response,
