@@ -49,7 +49,7 @@ const formSchema = z
   .refine((data) => data.imageUrl || data.imageFile, {
     message: "Either image URL or image File must be provided",
     path: ["imageFile"],
-  });
+  }); // in refine, we are checking if either imageUrl or imageFile is provided
 
 type RestaurantFormData = z.infer<typeof formSchema>;
 
