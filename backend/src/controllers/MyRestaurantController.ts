@@ -49,6 +49,7 @@ const updateMyRestaurant = async (req: Request, res: Response) => {
     }
 
     restaurant.restaurantName = req.body.restaurantName;
+    restaurant.address = req.body.address;
     restaurant.city = req.body.city;
     restaurant.country = req.body.country;
     restaurant.deliveryPrice = req.body.deliveryPrice;
