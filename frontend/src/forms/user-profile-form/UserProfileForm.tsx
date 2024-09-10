@@ -12,7 +12,7 @@ import {
 } from "../../components/ui/form";
 import { Input } from "../../components/ui/input";
 import { Button } from "../../components/ui/button";
-import { LoadingButton } from "../../components/LoadingButton";
+import LoadingButton from "../../components/LoadingButton";
 import { User } from "../../types";
 import { useEffect } from "react";
 
@@ -30,9 +30,17 @@ type Props = {
   currentUser: User;
   onSave: (userProfileData: UserFormData) => void;
   isLoading: boolean;
+  title?: string;
+  buttonText?: string;
 };
 
-const UserProfileForm = ({ onSave, isLoading, currentUser }: Props) => {
+const UserProfileForm = ({
+  onSave,
+  isLoading,
+  currentUser,
+  title = "User Profile",
+  buttonText = "Submit",
+}: Props) => {
   const form = useForm<UserFormData>({
     resolver: zodResolver(formSchema),
     defaultValues: currentUser,
@@ -50,7 +58,7 @@ const UserProfileForm = ({ onSave, isLoading, currentUser }: Props) => {
         className="bg-gray-50 space-y-4 rounded-lg md:p-10"
       >
         <div>
-          <h2 className="text-2xl font-bold">User Profile Form</h2>
+          <h2 className="text-2xl font-bold">{title}</h2>
           <FormDescription>
             View and chage your user profile information
           </FormDescription>
@@ -131,7 +139,7 @@ const UserProfileForm = ({ onSave, isLoading, currentUser }: Props) => {
           <LoadingButton />
         ) : (
           <Button type="submit" className="hover:bg-orange-500">
-            Submit
+            {buttonText}
           </Button>
         )}
       </form>
