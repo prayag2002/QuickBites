@@ -3,7 +3,7 @@
 QuickBites is a full-stack web application designed to help users order food online from their favorite restaurants. The platform supports multiple features including restaurant management, user profiles, order tracking, and secure payment processing via Stripe.
 
 ## Demo
-Check out the live demo at: [QuickBites Demo](https://quickbites-backend-lndr.onrender.com)
+Check out the live demo at: [QuickBites Demo](https://quickbites-frontend-181z.onrender.com)
 
 ## Table of Contents
 - [Features](#features)
