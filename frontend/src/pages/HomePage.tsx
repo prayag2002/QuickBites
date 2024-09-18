@@ -20,7 +20,7 @@ const HomePage = () => {
         </h1>
         <span className="text-xl">Food is just a click away!</span>
         <SearchBar
-          placeHolder="Search By City, eg.- Delhi"
+          placeHolder="Search By City, eg.- Delhi, Mumbai"
           onSubmit={handleSearchSubmit}
         />
       </div>
@@ -30,7 +30,7 @@ const HomePage = () => {
           <span className="font-bold text-3xl tracking-tighter">
             Order Takeaway even faster!
           </span>
-          <span>Download the MernEats app from playstore.</span>
+          <span>Download the QuickBites app from playstore.</span>
           <img src={appDownloadImage} />
         </div>
       </div>

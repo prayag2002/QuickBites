@@ -6,12 +6,17 @@ import {
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
 import { useAuth0 } from "@auth0/auth0-react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Separator } from "./ui/separator";
 import { Button } from "./ui/button";
 
 const UsernameMenu = () => {
   const { user, logout } = useAuth0();
+  const navigate = useNavigate();
+
+  const handleNavigation = (path: string) => {
+    navigate(path);
+  };
 
   return (
     <DropdownMenu>
@@ -20,18 +25,17 @@ const UsernameMenu = () => {
         {user?.email}
       </DropdownMenuTrigger>
       <DropdownMenuContent>
-        <DropdownMenuItem>
-          <Link
-            to="manage-restaurant"
-            className="font-bold hover:text-orange-500"
-          >
-            Manage Restaurant
-          </Link>
+        <DropdownMenuItem
+          onClick={() => handleNavigation("/manage-restaurant")}
+          className="font-bold hover:text-orange-500"
+        >
+          Manage Restaurant
         </DropdownMenuItem>
-        <DropdownMenuItem>
-          <Link to="user-profile" className="font-bold hover:text-orange-500">
-            User Profile
-          </Link>
+        <DropdownMenuItem
+          onClick={() => handleNavigation("/user-profile")}
+          className="font-bold hover:text-orange-500"
+        >
+          User Profile
         </DropdownMenuItem>
         <Separator />
         <DropdownMenuItem>
